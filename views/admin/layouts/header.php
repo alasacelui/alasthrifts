@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'token.php';
+//require_once 'token.php';
 require_once '../../function/autoload.php';
  ?>
 <!DOCTYPE html>
@@ -12,8 +12,8 @@ require_once '../../function/autoload.php';
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="icon" href="../../img/alasthriftshopp.ico">
+
 </head>
  <div class="wrapper">
         <!-- Sidebar Holder -->
@@ -79,7 +79,7 @@ require_once '../../function/autoload.php';
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php">Logout</a>
+                                <a class="nav-link" onclick="return confirm('Do you want to logout?')" href="logout.php">Logout</a>
                             </li>
                         </ul>
                     </div>

@@ -79,6 +79,80 @@ use PHPMailer\PHPMailer\Exception;
   
 }
 
+function admin_createUser($value)
+{
+    require '../../vendor/autoload.php';
+    $error = array();
+    if(isset($_POST['register']))
+
+    {
+        $name = htmlentities($value['name']);
+        $email = htmlentities($value['email']);
+        $phone = htmlentities($value['phone']);
+        $address = htmlentities($value['address']);
+        $password = htmlentities($value['password']);
+        $password2 = htmlentities($value['password2']);
+        $token = "qwertyuiopasdfghhjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890@#$%^";
+        $token = str_shuffle($token);
+        $token = substr($token, 0 , 12);
+
+         empty($name) ? $error['name'] = 'Name is required' : '';
+         empty($email)? $error['email'] = 'Email is required' : '';
+         empty($phone) ? $error['phone'] = 'Phone is required' : '';
+         empty($address) ? $error['address'] = 'Address is required' : '';
+         empty($password) ? $error['password'] = 'Password is required' : '';
+         empty($password2) ? $error['password'] = 'Confirm Password is required' : '';
+        !filter_var($email) ? $error['email'] = 'Invalid Email Address' : '';
+      
+        if(!$error)
+        {
+            $create = new User();
+        
+            if(!$create->registerUser($name , $email , $phone , $address , $password, $token))
+            {
+               die('ERROR');
+            }
+            else
+            {
+                $mail = new PHPMailer(true);
+
+                try {
+                    //Server settings
+                    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    $mail->isSMTP();                                            // Send using SMTP
+                    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                    $mail->Username   = 'alasacelui010@gmail.com';                     // SMTP username
+                    $mail->Password   = 'aceluimanalo010';                               // SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                    $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+                
+                    //Recipients
+                    $mail->setFrom('alasthrifts@gmail.com', 'Alas Thrifts');
+                    $mail->addAddress($email,$name);     // Add a recipient
+                 
+                    // Content
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->Subject = 'Email Verification';
+                    $body = "Please verify your email address <a href='http://localhost/test/confirm.php?token=$token'> Click here </a> ";
+                    $mail->Body = $body;
+                    // $mail->AltBody = strip_tags($body);
+                
+                    $mail->send();
+                    echo 'Message has been sent';
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+
+                echo "<script>alert('registered successfully! Please check your email for verification ')</script>";
+            }
+        }
+    
+        return $error;
+    }   
+  
+}
+
 function loginUser($value)
 {
     
@@ -705,7 +779,8 @@ function editCart()
         $add_qty = new Cart;
         if($add_qty->increaseCartProductQty($cart_id, $product_id,  $user_id))
         {
-            exit('Added 1 Quantity');
+            echo '<script>alert("Added 1 Quantity") </script>';
+            exit;
         }
         else
         {

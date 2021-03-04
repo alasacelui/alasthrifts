@@ -10,13 +10,12 @@
       <div class="modal-body">
        <form action="" method="POST">
        <?php
-       $validate = createUser($_POST);
+       $validate = admin_createUser($_POST);
              ?>
          <div class="form-group">
             <label for="">Name</label>
                 <input type="text" class="form-control" placeholder="John Doe" name="name">
-               <small class="text-danger"><?=$validate['name'] ?? "" ?></small>
-              
+               <small class="text-danger"><?=$validate['name'] ?? "" ?></small>      
          </div>
 
          <div class="form-group">

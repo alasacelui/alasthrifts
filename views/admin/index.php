@@ -20,7 +20,7 @@
             
             <div class="line"></div>
             <h2>Manage User</h2>
-           <button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#register">Add User</button>
+           <button class="btn btn-sm btn-primary m-2 btn-add-user" data-toggle="modal" data-target="#register">Add User</button>
                 <?php displayUsers();
                       destroyUser(); 
                     

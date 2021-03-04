@@ -13,6 +13,8 @@ require_once 'function/autoload.php' ?>
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="icon" href="./img/alasthriftshopp.ico">
+
   
    
 </head>

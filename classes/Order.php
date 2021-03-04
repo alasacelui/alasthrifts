@@ -37,7 +37,7 @@ class Order extends Config
     {
         $this->user_id = $user_id;
         $con = $this->con();
-        $query = $this->con->query("SELECT products.title , products.img , products.category , orders.amount , orders.status, orders.message, orders.created_at FROM orders INNER JOIN products ON orders.product_id = products.id WHERE orders.user_id = $this->user_id");
+        $query = $this->con->query("SELECT products.title , products.img , products.category , orders.amount , orders.status, orders.message, orders.created_at FROM orders INNER JOIN products ON orders.product_id = products.id WHERE orders.user_id = $this->user_id ORDER BY orders.id DESC");
         $this->result = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
         return $this->result;
@@ -47,7 +47,7 @@ class Order extends Config
     public function showOrders()
     {
         $con = $this->con();
-        $query = $this->con->query("SELECT users.name , products.title , products.img , products.category , orders.id, orders.amount , orders.status, orders.created_at FROM orders INNER JOIN products ON orders.product_id = products.id INNER JOIN users ON products.user_id = users.id");
+        $query = $this->con->query("SELECT users.name , products.title , products.img , products.category , orders.id, orders.amount , orders.status, orders.created_at FROM orders INNER JOIN products ON orders.product_id = products.id INNER JOIN users ON products.user_id = users.id ORDER BY orders.id DESC");
         $this->result = mysqli_fetch_all($query , MYSQLI_ASSOC);
 
         // return $this->result;

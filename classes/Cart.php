@@ -111,7 +111,7 @@ class Cart extends Config
         // check if the cart.product_qty is lower than 0 then it will throw and error
         if($this->result['product_qty'] <= 0)
         {
-            echo '<script>alert("Cannot process at the moment") </script>';
+            //echo '<script>alert("Product must not be less than 0") </script>';
             die;
         }
         else
