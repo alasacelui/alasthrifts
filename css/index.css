@@ -1,0 +1,22 @@
+
+    /* font-family: 'Architects Daughter', cursive; */
+    /* font-family: 'Permanent Marker', cursive; */
+
+
+.title {
+    font-family: 'Permanent Marker', cursive;
+}
+.section_2{
+    background-color: black;
+    color:rgb(255, 255, 255, 0.8);
+}
+#section_2_img {
+    height: 350px !important;
+    width: 285px !important;
+    
+}
+
+.sub-title
+{
+    font-family: 'Architects Daughter', cursive;
+}
